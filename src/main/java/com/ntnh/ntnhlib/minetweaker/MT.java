@@ -4,11 +4,12 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.event.FMLInterModComms;
 
 import com.google.common.io.Resources;
 import com.ntnh.ntnhlib.ntnhlib;
+
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.event.FMLInterModComms;
 
 public class MT {
 
