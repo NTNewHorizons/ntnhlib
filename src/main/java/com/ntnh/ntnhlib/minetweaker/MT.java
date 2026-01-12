@@ -12,18 +12,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import com.google.common.io.Resources;
 import com.ntnh.ntnhlib.ntnhlib;
 
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.event.FMLInterModComms;
 
 public class MT {
 
-    static {
-        if (Loader.isModLoaded("MineTweaker3")) {
-            loadAllScripts();
-        }
-    }
-
-    private static void loadAllScripts() {
+    public static void loadAllScripts() {
         try {
             URL resourceDir = ntnhlib.class.getResource("/minetweaker/");
             if (resourceDir != null) {
