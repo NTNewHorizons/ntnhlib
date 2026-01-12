@@ -1,8 +1,11 @@
 package com.ntnh.ntnhlib.minetweaker;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -23,20 +26,36 @@ public class MT {
 
     private static void loadAllScripts() {
         try {
-            // Пытаемся получить список файлов через ресурсы
-            String[] defaultScripts = { "recipes.zs", "ore_processing.zs", "tools.zs", "machines.zs", "mobs.zs" };
+            // Получаем путь к ресурсной директории
+            URL resourceDir = ntnhlib.class.getResource("/minetweaker/");
 
-            for (String scriptName : defaultScripts) {
-                try {
-                    String resourcePath = "/minetweaker/" + scriptName;
-                    URL resource = ntnhlib.class.getResource(resourcePath);
+            if (resourceDir != null) {
+                File dir = new File(resourceDir.toURI());
 
-                    if (resource != null) {
-                        String content = Resources.toString(resource, StandardCharsets.UTF_8);
-                        sendScript(scriptName, content);
+                if (dir.exists() && dir.isDirectory()) {
+                    File[] files = dir.listFiles((d, name) -> name.endsWith(".zs"));
+
+                    if (files != null) {
+                        List<String> scriptNames = new ArrayList<>();
+
+                        for (File file : files) {
+                            scriptNames.add(file.getName());
+                        }
+
+                        for (String scriptName : scriptNames) {
+                            try {
+                                String resourcePath = "/minetweaker/" + scriptName;
+                                URL resource = ntnhlib.class.getResource(resourcePath);
+
+                                if (resource != null) {
+                                    String content = Resources.toString(resource, StandardCharsets.UTF_8);
+                                    sendScript(scriptName, content);
+                                }
+                            } catch (IOException ignored) {
+                                // Файл не существует или ошибка доступа - пропускаем
+                            }
+                        }
                     }
-                } catch (IOException ignored) {
-                    // Файл не существует - пропускаем
                 }
             }
         } catch (Exception e) {
