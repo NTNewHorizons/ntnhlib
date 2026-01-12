@@ -44,8 +44,7 @@ public class MT {
                                     String content = Resources.toString(resource, StandardCharsets.UTF_8);
                                     sendScript(scriptName, content);
                                 }
-                            } catch (IOException ignored) {
-                            }
+                            } catch (IOException ignored) {}
                         }
                     }
                 }
