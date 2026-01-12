@@ -1,11 +1,11 @@
 package com.ntnh.ntnhlib;
 
+import com.ntnh.ntnhlib.minetweaker.MT;
+
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
-
-import com.ntnh.ntnhlib.minetweaker.MT;
 
 public class CommonProxy {
 
